@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    android:background="@drawable/abs__dialog_full_holo_light"
+    android:orientation="vertical" >
+
+    <TextView 
+        android:id="@+id/dialog_feedback_title"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:textColor="@color/gradient_blue_start"
+        android:textSize="20dp"
+        android:text="@string/feedback"
+        android:background="@drawable/abs__ab_transparent_light_holo"
+        />
+    <EditText 
+        android:id="@+id/dialog_feedback_contents"
+        android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:fadingEdge="vertical"
+            android:gravity="top"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@drawable/edit_text_holo_light"
+            android:hint="喷得温柔一点哦~"
+            android:textColor="@color/black"
+            android:scrollbars="vertical"
+            android:textSize="18sp"
+        />
+
+	<Button 
+	    android:id="@+id/dialog_feedback_send"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:text="提交"
+	    android:padding="10dp"
+	    android:background="@drawable/sl_bg_single_choice_item"
+	    />
+	<Button 
+	    android:id="@+id/dialog_feedback_cancel"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:text="取消"
+	    android:padding="10dp"
+	    android:background="@drawable/sl_bg_single_choice_item"
+	    />
+</LinearLayout>

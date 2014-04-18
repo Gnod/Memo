@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="transparent">#00ffffff</color>
+    <color name="brown">#4442280e</color>
+    <color name="gray">#ffbbbbbb</color>
+    <color name="yellow">#ffff9d00</color>
+    <color name="lightgray">#ffdddddd</color>
+    <color name="white">#ffffffff</color>
+    <color name="black">#ff000000</color>
+    <color name="red">#ffff0000</color>
+    <color name="tabMedium">#2B2B2B</color>
+    <color name="tabDark">#000000</color>
+    <color name="tabTransparent">#10ffffff</color>
+    <color name="roundCornerTableBorder">#ffbbbbbb</color>
+    <color name="gradient_red_start">#ff1A1A</color>
+    <color name="gradient_red_end">#CD2626</color>
+    <color name="gradient_white_start">#ffffff</color>
+    <color name="gradient_white_end">#FFDADADA</color>
+    <color name="gradient_green_start">#FF27C062</color>
+    <color name="gradient_green_end">#FF008C36</color>
+	<color name="gradient_blue_start">#1884D5</color>
+	<color name="gradient_blue_end">#1880D1</color>
+	<color name="gradient_light_blue_start">#27B6E0</color>
+	<color name="gradient_light_blue_end">#27B6E0</color>
+	<color name="gradient_light_green_start">#6CB9B5</color>
+	<color name="gradient_light_green_end">#6CB9B5</color>
+	<color name="gradient_black_start">#232323</color>
+	<color name="gradient_black_end">#161616</color>
+	<color name="gradient_grey_start">#77777777</color>
+	<color name="gradient_grey_end">#77777777</color>
+	<color name="gradient_yellow_start">#DF5D14</color>
+	<color name="gradient_yellow_end">#D55415</color>
+	
+	<color name="item_deepblue">#5d9cec</color>
+	<color name="item_blue">#4fc1e9</color>
+	<color name="item_yellow">#ffce54</color>
+	<color name="item_green">#48cfad</color>
+	<color name="item_pink">#ec87c0</color>
+    <color name="color_menu_seperator">#2c3e50</color>
+
+
+</resources>

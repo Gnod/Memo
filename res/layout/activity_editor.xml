@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.gnod.memo.views.EditorView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/editor_layout_sidebar"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:background="#34495e">
+
+        <include
+            android:id="@+id/editor_layout_sidebar_title"
+            layout="@layout/title_menu" />
+
+        <ListView
+            android:id="@+id/editor_layout_sidebar_itemlist"
+            android:layout_below="@id/editor_layout_sidebar_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@drawable/list_divider_holo_dark"
+            android:duplicateParentState="true"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="false" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/editor_layout_mainview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_0"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/note_editor_bg_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent">
+
+            <com.gnod.memo.widgets.TextEditor
+                android:id="@+id/note_editor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="60dp"
+                android:layout_marginTop="30dp"
+                android:background="@android:color/transparent"
+                android:fadingEdge="vertical"
+                android:gravity="top"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/white"
+                android:enabled="false"
+                android:scrollbars="vertical"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/note_editor_bg_change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:padding="10dp"
+                android:src="@drawable/icon_colors" />
+
+            <TextView
+                android:id="@+id/note_editor_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toLeftOf="@id/note_editor_bg_change"
+                android:textColor="@android:color/white"
+                android:textIsSelectable="false" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/note_editor_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@drawable/sl_bg_back_btn" />
+
+                <ImageView
+                    android:id="@+id/editor_del"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@drawable/sl_bg_del_btn" />
+
+                <ImageView
+                    android:id="@+id/editor_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@drawable/sl_bg_save_btn" />
+
+                <ImageView
+                    android:id="@+id/editor_forward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@drawable/sl_bg_forward_btn" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</com.gnod.memo.views.EditorView>

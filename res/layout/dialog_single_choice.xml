@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/abs__dialog_full_holo_light"
+    android:orientation="vertical" >
+
+    <TextView 
+        android:id="@+id/dialog_single_choice_title"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:textColor="@color/gradient_blue_start"
+        android:textSize="20dp"
+        android:text="@string/menu_theme"
+        android:background="@drawable/abs__ab_transparent_light_holo"
+        />
+
+	<ListView 
+            android:id="@+id/dialog_single_choice_list"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_margin="1dp"
+	        android:cacheColorHint="@android:color/transparent"
+	        android:divider="@drawable/list_divider_holo_light"
+		    android:duplicateParentState="true"
+	        android:footerDividersEnabled="false"
+	        android:headerDividersEnabled="false"
+	    />
+</LinearLayout>

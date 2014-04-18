@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    android:background="@drawable/abs__dialog_full_holo_light"
+    android:orientation="vertical" >
+
+    <TextView 
+        android:id="@+id/dialog_path_title"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:textColor="@color/gradient_blue_start"
+        android:textSize="20dp"
+        android:text="导出路径"
+        android:background="@drawable/abs__ab_transparent_light_holo"
+        />
+
+    <EditText
+        android:id="@+id/dialog_path_contents"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/edit_text_holo_light"
+        android:fadingEdge="vertical"
+        android:gravity="top"
+        android:singleLine="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:scrollbars="vertical"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/dialog_path_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/sl_bg_single_choice_item"
+            android:padding="10dp"
+            android:text="取消" />
+        
+        <Button
+            android:id="@+id/dialog_path_ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/sl_bg_single_choice_item"
+            android:padding="10dp"
+            android:text="确定" />
+
+    </LinearLayout>
+	
+</LinearLayout>

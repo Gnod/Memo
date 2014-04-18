@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:gravity="center_vertical"
+    android:background="@drawable/sl_bg_single_choice_item" >
+
+    <ImageView
+        android:id="@+id/dialog_single_choice_item_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_margin="10dp" />
+
+    <TextView
+        android:id="@+id/dialog_single_choice_item_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:layout_toRightOf="@id/dialog_single_choice_item_icon"
+        android:textColor="@color/tabDark"
+        android:textSize="20dp" />
+
+    <RadioButton
+        android:id="@+id/dialog_single_choice_item_radio_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_margin="8dp"
+        android:background="@drawable/btn_radio_holo_light"
+        android:button="@null"
+        android:clickable="false"
+        android:focusable="false" />
+
+</RelativeLayout>

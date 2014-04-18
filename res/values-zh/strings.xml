@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">便笺</string>
+    <string name="menu">菜单</string>
+    <string name="menu_add">添加</string>
+    <string name="menu_editor_save">保存</string>
+    <string name="menu_editor_delete">删除</string>
+    <string name="new_title">新建</string>
+    <string name="menu_edit">编辑</string>
+    <string name="menu_delete">删除</string>
+    <string name="menu_revert">撤销</string>
+	<string name="menu_bg">背景</string>
+	<string name="error_msg">加载内容时发生了错误.</string>
+	<string name="menu_undo">撤  销</string>
+    <string name="menu_redo">恢  复</string>
+    <string name="share">分享</string>
+    <string name="menu_settings">设置</string>
+    <string name="menu_theme">主题</string>
+    <string name="menu_password">设置密码</string>
+    <string name="menu_text_size">字体大小</string>
+    <string name="thumb_exit">退出</string>
+    <string name="thumb_back">删除</string>
+    <string name="password_hint1">请输入密码</string>
+    <string name="password_hint2">确认密码</string>
+    <string name="password_empty">密码不能为空！</string>
+    <string name="password_diff">两次密码不一致</string>
+    <string name="password_clear">撤销密码</string>
+    <string name="password_inform1">只允许最多输入8个数字</string>
+    <string name="password_inform2">请确保两次输入内容一致</string>
+    <string name="hint_email">没有可用的Email App.</string>
+    <string name="hint_weibo">没有可用的新浪微博App.</string>
+    <string name="output_txt">导出成TXT</string>
+    <string name="hint_backup_in">导出到</string>
+    <string name="hint_backup_failed">导出失败</string>
+    <string name="hint_empty_contents">内容为空.</string>
+    <string name="hint_delete">删除</string>
+    <string name="feedback">意见反馈</string>
+    <string-array name="bg_color">
+        <item >绿</item>
+        <item >红</item>
+        <item >蓝</item>
+        <item >白</item>
+        <item >黄</item>
+    </string-array>
+    <string-array name="share_type">
+        <item >短信</item>
+        <item >邮件</item>
+        <item >微博</item>
+    </string-array>
+    <string-array name="backup_list">
+        <item>至 SDCard</item>
+    </string-array>
+</resources>

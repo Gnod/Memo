@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_gravity="center"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	>
+	<ListView
+		android:id="@+id/menu_action_list"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:background="@drawable/switch_bg_holo_dark"
+		android:divider="@android:color/transparent"
+		android:duplicateParentState="true"
+		android:padding="3dp"
+		android:fadingEdgeLength="0dp"
+		android:verticalSpacing="3dp"
+		android:layout_marginTop="-1px" />
+</RelativeLayout>
