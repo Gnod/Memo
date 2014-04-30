@@ -7,7 +7,7 @@
         android:id="@+id/editor_layout_sidebar"
         android:layout_width="200dp"
         android:layout_height="match_parent"
-        android:background="#34495e">
+        android:background="#333333">
 
         <include
             android:id="@+id/editor_layout_sidebar_title"

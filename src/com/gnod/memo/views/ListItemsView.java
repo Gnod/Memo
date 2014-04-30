@@ -150,6 +150,8 @@ public class ListItemsView extends SideBarView{
 //		listBarBg.setBackgroundResource(listBarBgId);
 		int bgId = PreferenceHelper.getInt(PrefConstants.BG_ID, 0);
 		mainView.setBackgroundResource(PrefConstants.BG_IDS[bgId]);
+
+
 	}
 
 	@Override

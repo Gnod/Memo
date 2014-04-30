@@ -1,7 +1,5 @@
 package com.gnod.memo.views;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -17,6 +15,8 @@ import android.widget.TextView;
 
 import com.gnod.activity.R;
 import com.gnod.memo.widgets.SideBarItemAction;
+
+import java.util.ArrayList;
 
 public abstract class SideBarView extends ViewGroup{
 
@@ -222,7 +222,6 @@ public abstract class SideBarView extends ViewGroup{
 			TextView title = (TextView) convertView.findViewById(R.id.sidebar_item_text);
 			if(action.getTitle() != null)
 				title.setText(action.getTitle());
-			
 			TextView subTitle = (TextView)convertView.findViewById(R.id.sidebar_item_subtext);
 			if(action.getSubTitle() != null){
 				subTitle.setText(action.getSubTitle());

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.gnod.memo.views.ListItemsView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.gnod.memo.views.ListItemsView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:swipe="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -73,7 +75,7 @@
 	            android:textAppearance="?android:attr/textAppearanceLarge" />
 	    </RelativeLayout>
 	
-	    <ListView
+	    <com.gnod.memo.views.swipelistview.SwipeListView
 	        android:id="@+id/item_list"
 	        android:layout_width="match_parent"
 	        android:layout_height="match_parent"
@@ -82,8 +84,14 @@
 	        android:duplicateParentState="true"
 	        android:footerDividersEnabled="false"
 	        android:headerDividersEnabled="false"
-	        android:scrollbarStyle="outsideOverlay" >
-	    </ListView>
+	        android:scrollbarStyle="outsideOverlay"
+            swipe:swipeFrontView="@+id/listitem_front"
+            swipe:swipeBackView="@+id/listitem_back"
+            swipe:swipeMode="left"
+            swipe:swipeOffsetLeft="240dp"
+            swipe:swipeOpenOnLongPress="false"
+            swipe:swipeCloseAllItemsWhenMoveList="true"
+            />
     </LinearLayout>
     
 

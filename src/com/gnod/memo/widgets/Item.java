@@ -97,15 +97,15 @@ public class Item extends RelativeLayout {
 	
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent event) {
-		
+
 		if(canMoved){
-			mMoveDetector.onTouchEvent(event);
-		}
+			boolean moveResult = mMoveDetector.onTouchEvent(event);
+        }
 
 		if(dector != null){
 	        dector.onTouchEvent(event);
 	    }
-		
+
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
 			App.setPosition((Integer)getTag());
 			textView.setTextColor(Color.BLACK);
@@ -117,7 +117,7 @@ public class Item extends RelativeLayout {
 		} else {
 			textView.setTextColor(Color.WHITE);
 		}
-		
+
 		 return true;
 	}
 	

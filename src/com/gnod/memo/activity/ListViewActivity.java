@@ -1,9 +1,9 @@
 package com.gnod.memo.activity;
 
-import java.net.URLEncoder;
-
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentUris;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -25,9 +25,13 @@ import com.gnod.memo.tool.ToastHelper;
 import com.gnod.memo.ui.PopupList;
 import com.gnod.memo.ui.PopupOptMenu;
 import com.gnod.memo.views.ListItemsView;
+import com.gnod.memo.views.swipelistview.BaseSwipeListViewListener;
+import com.gnod.memo.views.swipelistview.SwipeListView;
 import com.gnod.memo.widgets.Item.GestureListener;
 import com.gnod.memo.widgets.PopupItemAction;
 import com.gnod.memo.widgets.PopupWidget;
+
+import java.net.URLEncoder;
 
 public class ListViewActivity extends Activity {
 	
@@ -39,18 +43,22 @@ public class ListViewActivity extends Activity {
 	private AppModel model = null;
 	private ListItemsView view = null;
 	private MemoHandler handler ;
-	
-	@Override
+    private SwipeListView swipeListView;
+    private boolean deleteMark = false;
+
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		App.setContext(this);
 		model = AppModel.getInstance();
 		view = (ListItemsView)View.inflate(this, R.layout.activity_list_items, null);
+        swipeListView = (SwipeListView) view.listView;
 		view.setViewListener(viewListener);
 		setContentView(view);
 		handler = MemoHandler.getInstance();
 		handler.registerStackListener();
 		initList();
+
 	}
 
 	@Override
@@ -71,12 +79,62 @@ public class ListViewActivity extends Activity {
 		String[] from = new String[]{
 				MemoConstants.COLUMN_NAME_NOTE_TITLE, 
 				MemoConstants.COLUMN_NAME_NOTE_TIME};
-		int[] to = new int[]{R.id.list_item_title, 
+		int[] to = new int[]{
+                R.id.list_item_title,
 				R.id.list_item_time};
-		
-		MemoCursorAdapter adapter = new MemoCursorAdapter(App.getContext(), 
-				R.layout.list_item, cursor, from, to);
-		adapter.setGestureListener(gestureListener);
+
+        swipeListView.setSwipeListViewListener(new BaseSwipeListViewListener() {
+            @Override
+            public void onClickFrontView(int position) {
+                super.onClickFrontView(position);
+                App.setPosition(position);
+                if (swipeListView.isOpen(position)) {
+                    swipeListView.closeAnimate(position);
+                } else {
+                    editItem(position);
+                }
+            }
+
+            @Override
+            public void onClosed(int position, boolean fromRight) {
+                super.onClosed(position, fromRight);
+                if (deleteMark) {
+                    deleteItem(App.getPosition());
+                    deleteMark = false;
+                }
+            }
+        });
+		MemoCursorAdapter adapter = new MemoCursorAdapter(App.getContext(),
+				R.layout.layout_listitem, cursor, from, to);
+        adapter.setItemMenuListener(new MemoCursorAdapter.MemoItemMenuListener() {
+            @Override
+            public void onDelete() {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(ListViewActivity.this);
+//                builder.setMessage("确定删除？");
+//                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                    }
+//                });
+//                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        deleteItem();
+//                    }
+//                });
+//                builder.show();
+                if (!deleteMark) {
+                    deleteMark = true;
+                    swipeListView.closeAnimate(App.getPosition());
+                }
+
+            }
+
+            @Override
+            public void onShare(View view) {
+                share(view);
+            }
+        });
 		view.setListAdapter(adapter);
 		
 	}
@@ -142,15 +200,15 @@ public class ListViewActivity extends Activity {
 	/**
 	 * Update current URI. 
 	 */
-	private void toggleUri(){
+	private void toggleUri(long id){
 		Uri noteUri = ContentUris.withAppendedId(
 				getIntent().getData(),
-				view.getListAdapter().getItemId(App.getPosition()));
+				id);
 		model.setUri(noteUri);
 	}
 	
-	public void editItem() {
-		toggleUri();
+	public void editItem(int position) {
+		toggleUri(view.getListAdapter().getItemId(position));
 		boolean moved = model.getCursor().moveToPosition(App.getPosition());
 		if(!moved){
 			Log.e(TAG, "invalid cursor position " + App.getPosition());
@@ -166,9 +224,8 @@ public class ListViewActivity extends Activity {
 		overridePendingTransition(R.anim.common_open_enter, R.anim.common_open_exit);
 	}
 	
-	public void deleteItem() {
-		ToastHelper.show(getResources().getString(R.string.hint_delete));
-		toggleUri();
+	public void deleteItem(int position) {
+		toggleUri(view.getListAdapter().getItemId(position));
 		Command command = new DeleteCommand(getContentResolver(),
 				model.getUri());
 		handler.setCurrentCommand(command);
@@ -200,36 +257,54 @@ public class ListViewActivity extends Activity {
 	private GestureListener gestureListener  = new GestureListener() {
 		@Override
 		public boolean onSingleTapUp(View v) {
-			editItem();
+			editItem(App.getPosition());
 			return false;
 		}
 
 		@Override
 		public void onScrollLeftUp(View v) {
-			deleteItem();
-		}
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(ListViewActivity.this);
+            builder.setMessage("确定删除？");
+            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    deleteItem(App.getPosition());
+                }
+            });
+            builder.show();
+        }
 
 		@Override
 		public void onScrollRightUp(View v) {
-			ToastHelper.show(view.getResources().getString(R.string.share));
-			toggleUri();
-			boolean moved = model.getCursor().moveToPosition(App.getPosition());
-			if(!moved){
-				Log.e(TAG, "invalid cursor position " + App.getPosition());
-				return;
-			}
-			String[] array = view.getResources().getStringArray(R.array.share_type);
-			PopupList menu = new PopupList(App.getContext());
-			menu.setWidth(LayoutParams.MATCH_PARENT);
-			for(String s:array){
-				menu.addMenuItemAction(new PopupItemAction(null, s));
-			}
-			menu.setOnItemClickListener(shareListener);
-			menu.show(v);
-		}
-	};
-	
-	PopupWidget.ItemClickListener shareListener = new PopupWidget.ItemClickListener() {
+            share(v);
+        }
+    };
+
+    private void share(View v) {
+//        ToastHelper.show(view.getResources().getString(R.string.share));
+        toggleUri(view.getListAdapter().getItemId(App.getPosition()));
+        boolean moved = model.getCursor().moveToPosition(App.getPosition());
+        if(!moved){
+            Log.e(TAG, "invalid cursor position " + App.getPosition());
+            return;
+        }
+        String[] array = view.getResources().getStringArray(R.array.share_type);
+        PopupList menu = new PopupList(App.getContext());
+        menu.setWidth(LayoutParams.MATCH_PARENT);
+        for(String s:array){
+            menu.addMenuItemAction(new PopupItemAction(null, s));
+        }
+        menu.setOnItemClickListener(shareListener);
+        menu.show(v);
+    }
+
+    PopupWidget.ItemClickListener shareListener = new PopupWidget.ItemClickListener() {
 		private final int SHARE_VIA_SMS = 0;
 		private final int SHARE_VIA_EMAIL = 1;
 		private final int SHARE_VIA_WEIBO = 2;

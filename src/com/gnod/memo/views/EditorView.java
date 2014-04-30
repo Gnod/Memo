@@ -147,7 +147,7 @@ public class EditorView extends SideBarView {
 		bindView();
 		setSideBarInLeft(false);
 		
-		int bgId = PreferenceHelper.getInt(PrefConstants.BG_ID, 2);
+		int bgId = PreferenceHelper.getInt(PrefConstants.BG_ID, 0);
 		mainView.setBackgroundResource(PrefConstants.BG_IDS[bgId]);
 	}
 
