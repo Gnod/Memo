@@ -728,7 +728,6 @@ public class SwipeListViewTouchListener implements View.OnTouchListener {
                 int x = (int) motionEvent.getRawX() - listViewCoords[0];
                 int y = (int) motionEvent.getRawY() - listViewCoords[1];
 
-                Log.e("----event---", x + " " + y + "  " + listViewCoords[0] + ":" + listViewCoords[1] + " " + motionEvent.getRawX() + ":" + motionEvent.getRawY());
                 View child;
                 for (int i = 0; i < childCount; i++) {
                     child = swipeListView.getChildAt(i);
@@ -827,6 +826,8 @@ public class SwipeListViewTouchListener implements View.OnTouchListener {
                 float deltaX = (motionEvent.getRawX() - downX);
                 float deltaMode = Math.abs(deltaX);
 
+                Log.e("---deltal----", deltaX + " " + deltaMode + " " + downX + "-" + motionEvent.getRawX());
+
                 int swipeMode = this.swipeMode;
                 int changeSwipeMode = swipeListView.changeSwipeMode(downPosition);
                 if (changeSwipeMode >= 0) {
@@ -837,16 +838,26 @@ public class SwipeListViewTouchListener implements View.OnTouchListener {
                     deltaMode = 0;
                 } else if (swipeMode != SwipeListView.SWIPE_MODE_BOTH) {
                     if (opened.get(downPosition)) {
-                        if (swipeMode == SwipeListView.SWIPE_MODE_LEFT && deltaX < 0) {
-                            deltaMode = 0;
-                        } else if (swipeMode == SwipeListView.SWIPE_MODE_RIGHT && deltaX > 0) {
-                            deltaMode = 0;
+                        if (swipeMode == SwipeListView.SWIPE_MODE_LEFT ) {
+                            if (deltaX < 0) {
+                                deltaMode = 0;
+                            } else {
+                                deltaX = 0;
+                            }
+                        } else if (swipeMode == SwipeListView.SWIPE_MODE_RIGHT) {
+                            if (deltaX > 0) {
+                                deltaMode = 0;
+                            } else {
+                                deltaX = 0;
+                            }
                         }
                     } else {
                         if (swipeMode == SwipeListView.SWIPE_MODE_LEFT && deltaX > 0) {
                             deltaMode = 0;
+                            deltaX = 0;
                         } else if (swipeMode == SwipeListView.SWIPE_MODE_RIGHT && deltaX < 0) {
                             deltaMode = 0;
+                            deltaX = 0;
                         }
                     }
                 }
