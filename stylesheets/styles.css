@@ -390,7 +390,7 @@ fieldset {
 
 /*
  * 1. Corrects color not being inherited in IE6/7/8/9
- * 2. Corrects text not wrapping in FF3 
+ * 2. Corrects text not wrapping in FF3
  * 3. Corrects alignment displayed oddly in IE6/7
  */
 legend {
@@ -769,6 +769,10 @@ dt {
 #header nav li.fork {
   float: left;
   margin-left: 0px;
+  font-family: 'OpenSansLight', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-size: 38px;
+  text-align: center;
 }
 #header nav li.downloads {
   float: right;
