@@ -39,4 +39,26 @@ android {
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')
     }
+
+    signingConfigs {
+        release {
+            storeFile file('key/gnod-release-key.keystore')
+            storePassword "caihan1991"
+            keyAlias "gnod"
+            keyPassword "caihan1991"
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+
+        lintOptions {
+            checkReleaseBuilds false
+            // Or, if you prefer, you can continue to check for errors in release builds,
+            // but continue the build even when errors are found:
+            abortOnError false
+        }
 }
