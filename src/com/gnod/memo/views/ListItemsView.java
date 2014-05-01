@@ -167,7 +167,7 @@ public class ListItemsView extends SideBarView{
 		aboutAction = new SideBarItemAction("关于", SIDEBAR_MENU_ABOUT);
 		
 //		sideBarActions.add(themeAction);
-//		sideBarActions.add(bgAction);
+		sideBarActions.add(bgAction);
 //		sideBarActions.add(passwordAction);
 		sideBarActions.add(pathAction);
 		sideBarActions.add(reportAction);
@@ -225,7 +225,7 @@ public class ListItemsView extends SideBarView{
 				
 			case SIDEBAR_MENU_BG:
 				String[] array = {
-					"The Lord", "Gandalf", "Aragorn", "Mordor"	
+					"Lord", "Gandalf", "Aragorn", "Mordor"
 				};
 				PopupList menu = new PopupList(App.getContext());
 				menu.setWidth(LayoutParams.MATCH_PARENT);
