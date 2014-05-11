@@ -809,6 +809,7 @@ section #title p {
   font-weight: normal;
   font-size: 18px;
   text-align: center;
+  height: 100%;
 }
 section #title .credits {
   font-size: 11px;
