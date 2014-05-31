@@ -79,7 +79,8 @@ public class PathDialog extends Dialog {
 			editor.putString(PrefConstants.OUTPUT_PATH, content);
 			editor.commit();
 			dismiss();
-			pathListener.onOkClicked(v, content);
+            if (pathListener != null)
+    			pathListener.onOkClicked(v, content);
 		}
 	};
 

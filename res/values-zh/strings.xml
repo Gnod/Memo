@@ -51,4 +51,10 @@
     <string-array name="backup_list">
         <item>至 SDCard</item>
     </string-array>
+    <string-array name="drawer_list">
+        <item>背景</item>
+        <item>导出路径</item>
+        <item>意见反馈</item>
+        <item>版本</item>
+    </string-array>
 </resources>

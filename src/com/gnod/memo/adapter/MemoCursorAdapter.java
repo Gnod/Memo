@@ -64,6 +64,7 @@ public class MemoCursorAdapter extends SimpleCursorAdapter {
             }
         });
 
+
 //		View childView = v.findViewById(R.id.list_item_title);
 //
 //		int index = getCursor().getColumnIndex(
@@ -80,6 +81,7 @@ public class MemoCursorAdapter extends SimpleCursorAdapter {
 //		((Item)v).showInitAnimation((position % 12) * 30);
 		return v;
 	}
+
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {

@@ -36,6 +36,10 @@
     <string name="hint_empty_contents">Empty contents.</string>
     <string name="hint_delete">Delete</string>
     <string name="feedback">Feed back</string>
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
     <string-array name="bg_color">
         <item >Green</item>
         <item >Red</item>
@@ -50,5 +54,12 @@
     </string-array>
     <string-array name="backup_list">
         <item>To SDCard</item>
+    </string-array>
+    
+    <string-array name="drawer_list">
+        <item>background</item>
+        <item>output path</item>
+        <item>feedback</item>
+        <item>version</item>
     </string-array>
 </resources>

@@ -47,6 +47,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:gravity="center_vertical"
             android:singleLine="true"
+            android:textColor="@color/white"
             android:textIsSelectable="false"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
