@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.SimpleCursorAdapter;
 
 import com.gnod.activity.R;
-import com.gnod.memo.activity.App;
 import com.gnod.memo.provider.MemoConstants;
 import com.gnod.memo.widgets.Item.GestureListener;
 import com.gnod.memo.widgets.ItemAnimPool;
@@ -41,28 +40,28 @@ public class MemoCursorAdapter extends SimpleCursorAdapter {
 
 		View v = super.getView(position, convertView, parent);
 
-        View btnDel = v.findViewById(R.id.listitem_btn_delete);
-        View btnShare = v.findViewById(R.id.listitem_btn_share);
-
-        btnDel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                App.setPosition(position);
-                if(mMenuListener != null) {
-                    mMenuListener.onDelete();
-                }
-            }
-        });
-
-        btnShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                App.setPosition(position);
-                if(mMenuListener != null) {
-                    mMenuListener.onShare(v);
-                }
-            }
-        });
+//        View btnDel = v.findViewById(R.id.listitem_btn_delete);
+//        View btnShare = v.findViewById(R.id.listitem_btn_share);
+//
+//        btnDel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                App.setPosition(position);
+//                if(mMenuListener != null) {
+//                    mMenuListener.onDelete();
+//                }
+//            }
+//        });
+//
+//        btnShare.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                App.setPosition(position);
+//                if(mMenuListener != null) {
+//                    mMenuListener.onShare(v);
+//                }
+//            }
+//        });
 
 
 //		View childView = v.findViewById(R.id.list_item_title);

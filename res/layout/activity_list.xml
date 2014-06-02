@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.gnod.memo.views.swipelistview.SwipeListView
+        <com.gnod.memo.views.EnhancedListView
             android:id="@+id/item_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

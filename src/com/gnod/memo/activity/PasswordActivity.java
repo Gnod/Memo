@@ -91,7 +91,7 @@ public class PasswordActivity extends Activity {
 			if(input.equals(realPassword) || 
 					StringHelper.isNullOrEmpty(realPassword)){
 				Intent intent = new Intent();
-				intent.setClass(PasswordActivity.this, ListViewActivity.class);					
+				intent.setClass(PasswordActivity.this, MemoListActivity.class);
 				startActivity(intent);
 			}
 		}

@@ -38,7 +38,7 @@ public class MainActivity extends Activity{
 //    	else
     	{
     		Intent intent = new Intent();
-			intent.setClass(MainActivity.this, ListActivity.class);
+			intent.setClass(MainActivity.this, MemoListActivity.class);
 			startActivity(intent);
     	}
 		

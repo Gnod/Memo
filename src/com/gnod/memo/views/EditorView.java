@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
@@ -60,12 +61,23 @@ public class EditorView extends SideBarView {
             Animation.RELATIVE_TO_SELF, -1.0f, Animation.RELATIVE_TO_SELF, 0.0f,
             Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f
             );
+    AlphaAnimation fadeOutAnim = new AlphaAnimation(1, 0);
+    AlphaAnimation fadeInAnim = new AlphaAnimation(0, 1);
+    AnimationSet fadeAnim = new AnimationSet(false);
+
 	{
-		alphaAnim.setStartOffset(400);
+        fadeOutAnim.setDuration(150);
+        fadeAnim.addAnimation(fadeOutAnim);
+        fadeInAnim.setStartOffset(150);
+        fadeInAnim.setDuration(200);
+        fadeAnim.addAnimation(fadeInAnim);
+
+        alphaAnim.setStartOffset(400);
 		alphaAnim.setDuration(300);
 		animLeftIn.setDuration(500);
 		animRightIn.setDuration(500);
 	}
+
 	private ImageView btnBack;
 	private ImageView btnDel;
 	private ImageView btnSave;
@@ -255,7 +267,7 @@ public class EditorView extends SideBarView {
 
 	private void onForward(){
 		viewListener.onForward();
-		bgLayout.startAnimation(animRightIn);
+		bgLayout.startAnimation(fadeAnim);
 		editor.startAnimation(alphaAnim);
 		modTime.startAnimation(alphaAnim);
 	}
@@ -270,7 +282,7 @@ public class EditorView extends SideBarView {
 	
 	public void onPrevious(){
 		viewListener.onPrevious();
-		bgLayout.startAnimation(animLeftIn);
+		bgLayout.startAnimation(fadeAnim);
 		editor.startAnimation(alphaAnim);
 		modTime.startAnimation(alphaAnim);
 	}

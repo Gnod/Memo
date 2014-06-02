@@ -5,40 +5,21 @@
     android:layout_height="match_parent"
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
-    android:paddingTop="8dp"
-    >
+    android:paddingTop="8dp">
 
-    <LinearLayout
-        android:id="@+id/listitem_back"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center_vertical|right"
-        >
-
-        <ImageView
-            android:id="@+id/listitem_btn_share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/sl_bg_share_btn"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            />
-        <ImageView
-            android:id="@+id/listitem_btn_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/sl_bg_del_btn"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            />
-        </LinearLayout>
+    <ImageView
+        android:id="@+id/listitem_btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/sl_bg_del_btn"
+        android:layout_gravity="center"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp" />
 
     <RelativeLayout
         android:id="@+id/listitem_front"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/list_item_title"
@@ -50,8 +31,7 @@
             android:textColor="@color/white"
             android:textIsSelectable="false"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            />
+            android:layout_marginRight="8dp" />
 
         <TextView
             android:id="@+id/list_item_time"

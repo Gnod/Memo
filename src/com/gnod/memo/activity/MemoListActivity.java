@@ -26,6 +26,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.gnod.activity.R;
@@ -42,8 +43,7 @@ import com.gnod.memo.tool.ToastHelper;
 import com.gnod.memo.ui.PathDialog;
 import com.gnod.memo.ui.PopupList;
 import com.gnod.memo.ui.PopupOptMenu;
-import com.gnod.memo.views.swipelistview.BaseSwipeListViewListener;
-import com.gnod.memo.views.swipelistview.SwipeListView;
+import com.gnod.memo.views.EnhancedListView;
 import com.gnod.memo.widgets.Item.GestureListener;
 import com.gnod.memo.widgets.PopupItemAction;
 import com.gnod.memo.widgets.PopupWidget;
@@ -51,9 +51,9 @@ import com.umeng.fb.FeedbackAgent;
 
 import java.net.URLEncoder;
 
-public class ListActivity extends Activity {
+public class MemoListActivity extends Activity {
 
-    private static final String TAG = ListActivity.class.getSimpleName();
+    private static final String TAG = MemoListActivity.class.getSimpleName();
     private static final int MENU_UNDO = 0;
     private static final int MENU_REDO = 1;
 
@@ -63,7 +63,8 @@ public class ListActivity extends Activity {
 
     private AppModel model = null;
     private MemoHandler handler;
-    private SwipeListView swipeListView;
+//    private SwipeListView swipeListView;
+    private EnhancedListView mEnhancedListView;
     private boolean deleteMark = false;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -118,10 +119,13 @@ public class ListActivity extends Activity {
             }
         });
 
-        swipeListView = (SwipeListView) findViewById(R.id.item_list);
+//        swipeListView = (SwipeListView) findViewById(R.id.item_list);
+        mEnhancedListView = (EnhancedListView) findViewById(R.id.item_list);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
+        getActionBar().setIcon(R.drawable.bar_title);
+        getActionBar().setDisplayShowTitleEnabled(false);
 
         handler = MemoHandler.getInstance();
         handler.registerStackListener();
@@ -224,60 +228,71 @@ public class ListActivity extends Activity {
                 R.id.list_item_title,
                 R.id.list_item_time};
 
-        swipeListView.setSwipeListViewListener(new BaseSwipeListViewListener() {
-            @Override
-            public void onClickFrontView(int position) {
-                super.onClickFrontView(position);
-                App.setPosition(position);
-                if (swipeListView.isOpen(position)) {
-                    swipeListView.closeAnimate(position);
-                } else {
-                    editItem(position);
-                }
-            }
-
-            @Override
-            public void onClosed(int position, boolean fromRight) {
-                super.onClosed(position, fromRight);
-                if (deleteMark) {
-                    deleteItem(App.getPosition());
-                    deleteMark = false;
-                }
-            }
-        });
-        MemoCursorAdapter adapter = new MemoCursorAdapter(App.getContext(),
+        final MemoCursorAdapter adapter = new MemoCursorAdapter(App.getContext(),
                 R.layout.layout_listitem, cursor, from, to);
-        adapter.setItemMenuListener(new MemoCursorAdapter.MemoItemMenuListener() {
-            @Override
-            public void onDelete() {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(ListViewActivity.this);
-//                builder.setMessage("确定删除？");
-//                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                    }
-//                });
-//                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        deleteItem();
-//                    }
-//                });
-//                builder.show();
-                if (!deleteMark) {
-                    deleteMark = true;
-                    swipeListView.closeAnimate(App.getPosition());
-                }
 
-            }
+        mEnhancedListView.setDismissCallback(new EnhancedListView.OnDismissCallback() {
 
             @Override
-            public void onShare(View view) {
-                share(view);
+            public EnhancedListView.Undoable onDismiss(EnhancedListView listView, final int position) {
+
+//                final String item = (String) adapter.getItem(position);
+//                adapter.remove(position);
+                deleteItem(position);
+                return null;
             }
         });
-        swipeListView.setAdapter(adapter);
 
+        // Show toast message on click and long click on list items.
+        mEnhancedListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                App.setPosition(position);
+                editItem(position);
+            }
+        });
+        mEnhancedListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                share(view);
+                return true;
+            }
+        });
+
+//        adapter.setItemMenuListener(new MemoCursorAdapter.MemoItemMenuListener() {
+//            @Override
+//            public void onDelete() {
+////                AlertDialog.Builder builder = new AlertDialog.Builder(ListViewActivity.this);
+////                builder.setMessage("确定删除？");
+////                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+////                    @Override
+////                    public void onClick(DialogInterface dialog, int which) {
+////                    }
+////                });
+////                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+////                    @Override
+////                    public void onClick(DialogInterface dialog, int which) {
+////                        deleteItem();
+////                    }
+////                });
+////                builder.show();
+////                if (!deleteMark) {
+////                    deleteMark = true;
+////                    swipeListView.closeAnimate(App.getPosition());
+////                }
+//
+//            }
+//
+//            @Override
+//            public void onShare(View view) {
+//                share(view);
+//            }
+//        });
+//        swipeListView.setAdapter(adapter);
+        mEnhancedListView.setAdapter(adapter);
+        mEnhancedListView.enableSwipeToDismiss();
+        mEnhancedListView.setSwipeDirection(EnhancedListView.SwipeDirection.START);
+        mEnhancedListView.setSwipingLayout(R.id.listitem_front);
 
         int bgId = PreferenceHelper.getInt(PrefConstants.BG_ID, 1);
         mDrawerLayout.setBackgroundResource(PrefConstants.BG_IDS[bgId]);
@@ -359,7 +374,7 @@ public class ListActivity extends Activity {
     }
 
     public void editItem(int position) {
-        toggleUri(swipeListView.getAdapter().getItemId(position));
+        toggleUri(getListAdapter().getItemId(position));
         boolean moved = model.getCursor().moveToPosition(App.getPosition());
         if (!moved) {
             Log.e(TAG, "invalid cursor position " + App.getPosition());
@@ -368,7 +383,7 @@ public class ListActivity extends Activity {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_EDIT);
         intent.setData(getIntent().getData());
-        intent.setClass(ListActivity.this, EditorActivity.class);
+        intent.setClass(MemoListActivity.this, EditorActivity.class);
         Command command = new StartActivityCommand(intent);
         handler.setCurrentCommand(command);
         handler.invoke();
@@ -376,11 +391,15 @@ public class ListActivity extends Activity {
     }
 
     public void deleteItem(int position) {
-        toggleUri(swipeListView.getAdapter().getItemId(position));
+        toggleUri(getListAdapter().getItemId(position));
         Command command = new DeleteCommand(getContentResolver(),
                 model.getUri());
         handler.setCurrentCommand(command);
         handler.invoke();
+    }
+
+    public ListAdapter getListAdapter() {
+        return mEnhancedListView.getAdapter();
     }
 
     public void onAddItem() {
@@ -389,7 +408,7 @@ public class ListActivity extends Activity {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_INSERT);
         intent.setData(getIntent().getData());
-        intent.setClass(ListActivity.this, EditorActivity.class);
+        intent.setClass(MemoListActivity.this, EditorActivity.class);
         Command command = new StartActivityCommand(intent);
         handler.setCurrentCommand(command);
         handler.invoke();
@@ -406,7 +425,7 @@ public class ListActivity extends Activity {
         @Override
         public void onScrollLeftUp(View v) {
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(ListActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(MemoListActivity.this);
             builder.setMessage("确定删除？");
             builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                 @Override
@@ -430,7 +449,7 @@ public class ListActivity extends Activity {
 
     private void share(View v) {
 //        ToastHelper.show(view.getResources().getString(R.string.share));
-        toggleUri(swipeListView.getAdapter().getItemId(App.getPosition()));
+        toggleUri(getListAdapter().getItemId(App.getPosition()));
         boolean moved = model.getCursor().moveToPosition(App.getPosition());
         if (!moved) {
             Log.e(TAG, "invalid cursor position " + App.getPosition());

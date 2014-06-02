@@ -1,8 +1,7 @@
 package com.gnod.memo.activity;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,6 +16,8 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 
 import com.gnod.activity.R;
+
+import java.util.ArrayList;
 
 public class GuideActivity extends Activity {
 
@@ -142,7 +143,7 @@ public class GuideActivity extends Activity {
 					public void run() {
 						if(isFirstLaunch) {
 							Intent intent = new Intent();
-	        				intent.setClass(GuideActivity.this, ListViewActivity.class);					
+	        				intent.setClass(GuideActivity.this, MemoListActivity.class);
 	        				startActivity(intent);
 						} else {
 							finish();
