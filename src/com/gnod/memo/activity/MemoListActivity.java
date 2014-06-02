@@ -60,6 +60,7 @@ public class MemoListActivity extends Activity {
     public static final int SIDEBAR_MENU_BG = 0;
     public static final int SIDEBAR_MENU_OUTPUT_PATH = 1;
     public static final int SIDEBAR_MENU_REPORT = 2;
+    public static final int SIDEBAR_MENU_PASSWORD = 3;
 
     private AppModel model = null;
     private MemoHandler handler;
@@ -205,6 +206,11 @@ public class MemoListActivity extends Activity {
             case SIDEBAR_MENU_REPORT:
                 FeedbackAgent agent = new FeedbackAgent(this);
                 agent.startFeedbackActivity();
+                break;
+            case SIDEBAR_MENU_PASSWORD:
+                Intent intent = new Intent();
+                intent.setClass(this, PasswordSetActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;

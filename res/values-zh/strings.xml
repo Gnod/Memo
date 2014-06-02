@@ -55,6 +55,7 @@
         <item>背景</item>
         <item>导出路径</item>
         <item>意见反馈</item>
+        <item>密码保护</item>
         <item>版本</item>
     </string-array>
 </resources>

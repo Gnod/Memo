@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.gnod.activity.R;
+import com.gnod.memo.tool.PrefConstants;
 import com.gnod.memo.tool.PreferenceHelper;
 import com.gnod.memo.tool.StringHelper;
 
@@ -27,6 +28,9 @@ public class PasswordActivity extends Activity {
 		setContentView(R.layout.activity_password);
 		initView();
 		realPassword = PreferenceHelper.getString("Password");
+
+        int bgId = PreferenceHelper.getInt(PrefConstants.BG_ID, 1);
+        findViewById(R.id.password_bg).setBackgroundResource(PrefConstants.BG_IDS[bgId]);
 	}
 	
 	private void initView()

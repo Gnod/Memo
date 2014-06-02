@@ -3,13 +3,13 @@
 
     <item android:state_pressed="true" android:state_window_focused="true">
         <layer-list>
-            <item android:right="1dp" >
+            <item android:right="1dp">
                 <shape>
-                    <gradient android:angle="270" android:endColor="@color/gradient_red_end" android:startColor="@color/gradient_red_start" />
-                    <corners android:radius="8dp" />
+                    <gradient android:angle="270" android:endColor="@color/gradient_grey_start"
+                        android:startColor="@color/gradient_grey_end" />
                 </shape>
             </item>
         </layer-list>
     </item>
-    <item android:drawable="@color/transparent" android:state_window_focused="false"/>
+    <item android:drawable="@color/transparent" android:state_window_focused="false" />
 </selector>

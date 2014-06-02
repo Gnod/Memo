@@ -29,13 +29,14 @@ public class MainActivity extends Activity{
 //			intent.putExtra("First_launch", true);
 //			intent.setClass(MainActivity.this, GuideActivity.class);
 //			startActivity(intent);
-//		}else if (usePassword.equalsIgnoreCase("True"))
-//		{
-//			Intent intent = new Intent();
-//			intent.setClass(MainActivity.this, PasswordActivity.class);
-//			startActivity(intent);
-//		}
-//    	else
+//		}else
+        if (usePassword.equalsIgnoreCase("True"))
+		{
+			Intent intent = new Intent();
+			intent.setClass(MainActivity.this, PasswordActivity.class);
+			startActivity(intent);
+		}
+    	else
     	{
     		Intent intent = new Intent();
 			intent.setClass(MainActivity.this, MemoListActivity.class);
